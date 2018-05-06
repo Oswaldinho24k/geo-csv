@@ -1,0 +1,46 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>{% block page_title %}{% endblock %}</title>
+
+		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+
+		{# Bootstrap #}
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+		{% block extra_css %}{% endblock %}
+	</head>
+	<body>
+		
+		<header>
+			<div class="container-fluid">
+				{% block header %}{% endblock %}
+			</div>
+			
+		</header>
+
+		<section>
+			<div class="container-fluid">
+				{% block body_content %}{% endblock %}
+			</div>
+		</section>
+
+		<footer>
+			<div class="container-fluid">
+				{% block footer_content %}{% endblock %}
+			</div>
+		</footer>
+		{# Jquery #}
+		<script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+
+		{# Bootstrap Javascript #}
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+		{% block extra_js %}{% endblock %}
+	</body>
+</html>
+

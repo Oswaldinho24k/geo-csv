@@ -1,0 +1,329 @@
+{% load staticfiles %}
+<!-- <div class='row text-center'>
+  {% if user and not user.is_anonymous %}
+    <a class="btn btn-warning btn-lg" href="{% url 'tosp_auth:logout' %}">Logout</a>
+  {% else %}
+    <a class="btn btn-primary btn-lg" href="{% url 'tosp_auth:login' %}">Login</a>
+  {% endif %}
+</div> -->
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>iuPick: La red de puntos para tu ecommerce</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href={% static "landing/vendor/bootstrap/css/bootstrap.min.css" %} rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href={% static "landing/vendor/font-awesome/css/font-awesome.min.css" %} rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+    <!-- Plugin CSS -->
+    <link href={% static "landing/vendor/magnific-popup/magnific-popup.css" %} rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href={% static "landing/css/creative.min.css" %} rel="stylesheet">
+	<style>
+	  /* Always set the map height explicitly to define the size of the div
+	   * element that contains the map. */
+	  #map {
+	    height: 100%;
+	  }
+
+	  #mapRow {
+	    height: 500px;
+	  }
+	  /* Optional: Makes the sample page fill the window. */
+	  html, body {
+	    height: 100%;
+	    margin: 0;
+	    padding: 0;
+	  }
+	</style>
+  </head>
+
+  <body id="page-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-shrink" id="mainNav">
+      <div class="container">
+        <a class="js-scroll-trigger" href="#page-top"><img src={% static "landing/img/logo.png" %} alt="iupick"></a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#about">Nosotros</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#services">Servicios</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#carriers">Puntos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contacto</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <header class="masthead">
+      <div class="header-content">
+        <div class="header-content-inner">
+          <h1 id="homeHeading">La red de puntos de entrega para tu ecommerce</h1>
+          <hr>
+          <p style="font-size: 1.6em;"><span style="color:#ccc;background: #222;">Permite a tus clientes elegir entre miles de puntos de entrega para recibir sus pedidos. Una solución económica y conveniente.</span></p>
+          <a class="btn btn-primary btn-xl js-scroll-trigger"
+            href="#about">Descubre más</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="bg-primary" id="about">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto text-center">
+            <h2 class="section-heading text-white">Miles de puntos de entrega a
+              disposición de tus clientes.</h2>
+            <hr class="light">
+            <p class="text-faded">Estamos afiliando puntos de entrega cada día, permitiendo aumentar tus opciones de envío y por tanto tu conversión. </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-heading">Servicios</h2>
+            <hr class="primary">
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3 col-md-6 text-center">
+            <div class="service-box">
+              <i class="fa fa-4x fa-cogs text-primary sr-icons"></i>
+              <h3>API</h3>
+              <p class="text-muted">Usa nuestra API para integrar los puntos de entrega, generar guías y hacer tracking de los pedidos.</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 text-center">
+            <div class="service-box">
+              <i class="fa fa-4x fa-flash text-primary sr-icons"></i>
+              <h3>Facil de integrar</h3>
+              <p class="text-muted">Simples integraciones a través de nuestros plugins y extensiones de las principales plataformas de eCommerce.</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 text-center">
+            <div class="service-box">
+              <i class="fa fa-4x fa-truck text-primary sr-icons"></i>
+              <h3>Una solución única</h3>
+              <p class="text-muted">Ofrece a tus clientes una solución de envíos alternativa y única en México.</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 text-center">
+            <div class="service-box">
+              <i class="fa fa-4x fa-dollar text-primary sr-icons"></i>
+              <h3>Tarifas</h3>
+              <p class="text-muted">Ofrecemos tarifas de envío competitivas con los transportistas más fiables del mercado.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+          <div id="carriers" class="call-to-action bg-dark">
+      <div class="container text-center">
+        <h2>Más de 1,000 puntos</h2>
+      </div>
+            <div class="container">
+        <div id="mapRow" class="row">
+      <div class="col-lg-12">
+        <div id="map"></div>
+      </div>
+    </div>
+    <br>
+      </div>
+<!--     <section class="p-0" id="carriers">
+
+    </div>
+      <div class="container-fluid">
+        <div class="row no-gutter popup-gallery">
+          <div class="col-lg-4 col-sm-6">
+            <a class="portfolio-box" href={% static "landing/img/portfolio/fullsize/1.jpg" %}>
+              <img class="img-fluid" src={% static "landing/img/portfolio/thumbnails/1.jpg" %} alt="">
+              <div class="portfolio-box-caption">
+                <div class="portfolio-box-caption-content">
+                  <div class="project-category text-faded">
+                    Carrier
+                  </div>
+                  <div class="project-name">
+                    Fedex
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-4 col-sm-6">
+            <a class="portfolio-box" href={% static "landing/img/portfolio/fullsize/2.jpg" %}>
+              <img class="img-fluid" src={% static "landing/img/portfolio/thumbnails/2.jpg" %} alt="">
+              <div class="portfolio-box-caption">
+                <div class="portfolio-box-caption-content">
+                  <div class="project-category text-faded">
+                    Carrier
+                  </div>
+                  <div class="project-name">
+                    Estafeta
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-4 col-sm-6">
+            <a class="portfolio-box" href={% static "landing/img/portfolio/fullsize/3.jpg" %}>
+              <img class="img-fluid" src={% static "landing/img/portfolio/thumbnails/3.jpg" %} alt="">
+              <div class="portfolio-box-caption">
+                <div class="portfolio-box-caption-content">
+                  <div class="project-category text-faded">
+                    Carrier
+                  </div>
+                  <div class="project-name">
+                    DHL
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+      </div>
+
+    </section> -->
+
+
+    <section id="contact">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto text-center">
+            <h2 class="section-heading">Ponte en contacto</h2>
+            <hr class="primary">
+            <p>¿Interesado en nuestra solución?<br/>Estamos a tu disposición para ayudarte con la integración y suministrarte toda la documentación necesaria.</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 ml-auto text-center">
+            <i class="fa fa-phone fa-3x sr-contact"></i>
+            <p>(55) 2383-2042</p>
+          </div>
+          <div class="col-lg-4 mr-auto text-center">
+            <i class="fa fa-envelope-o fa-3x sr-contact"></i>
+            <p>
+              <a href="mailto:info@iupick.com">info@iupick.com</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src={% static "landing/vendor/jquery/jquery.min.js" %}></script>
+    <script src={% static "landing/vendor/popper/popper.min.js" %}></script>
+    <script src={% static "landing/vendor/bootstrap/js/bootstrap.min.js" %}></script>
+
+    <!-- Plugin JavaScript -->
+    <script src={% static "landing/vendor/jquery-easing/jquery.easing.min.js" %}></script>
+    <script src={% static "landing/vendor/scrollreveal/scrollreveal.min.js" %}></script>
+    <script src={% static "landing/vendor/magnific-popup/jquery.magnific-popup.min.js" %}></script>
+
+    <!-- Custom scripts for this template -->
+    <script src={% static "landing/js/creative.min.js" %}></script>
+	<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js" /></script>
+
+    <script>
+      var map;
+      var markers = [];
+
+      function getWaypoints(mapa){
+
+		$.ajax({
+		  type: "GET",
+		  beforeSend: function(request) {
+		    request.setRequestHeader("Authorization", "Token d0d5a33a4045333f71aae9bb242f4fb4a9048239");
+		  },
+		  url: "https://sandbox.iupick.com/api/waypoints/",
+		  success: function(waypoints) {
+        	for (var i = 0; i < waypoints.length; i++) {
+		        var latLng = new google.maps.LatLng(waypoints[i].latitude,waypoints[i].longitude);
+	    		var marker = new google.maps.Marker({
+		          position: latLng,
+		          map: mapa
+		        });
+		    	markers.push(marker)
+        	}
+			var markerCluster = new MarkerClusterer(mapa, markers,{
+				imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
+			});
+		  }
+		});
+
+        
+  //       google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
+  //           return function() {
+  //               infowindow.setContent(content);
+  //               infowindow.open(mapa,marker);
+  //           };
+  //       })(marker,content,infowindow));  
+  //       // markers[i].addListener('click', function() {
+  //       //     infowindow.open(mapa, marker);
+  //       // });
+  //       }
+		// var markerCluster = new MarkerClusterer(mapa, markers,
+  //           {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+      }
+
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 5,
+          center: new google.maps.LatLng(23.4,-102),
+          mapTypeId: 'terrain'
+        });
+        getWaypoints(map);
+        // Create a <script> tag and set the USGS URL as the source.
+        // var script = document.createElement('script');
+        // This example uses a local copy of the GeoJSON stored at
+        // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
+        // script.src = 'https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
+        // document.getElementsByTagName('head')[0].appendChild(script);
+      }
+
+      // Loop through the results array and place a marker for each
+      // set of coordinates.
+      window.eqfeed_callback = function(results) {
+        for (var i = 0; i < results.features.length; i++) {
+          var coords = results.features[i].geometry.coordinates;
+          var latLng = new google.maps.LatLng(coords[1],coords[0]);
+          var marker = new google.maps.Marker({
+            position: latLng,
+            map: map
+          });
+        }
+      }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4JQ2inKX4ormb0kWFJkbzVBEAkCCRGqg&callback=initMap">
+    </script>
+
+  </body>
+
+</html>

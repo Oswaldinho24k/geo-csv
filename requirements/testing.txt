@@ -1,0 +1,4 @@
+-r base.txt
+
+factory-boy==2.8.1
+splinter==0.7.5

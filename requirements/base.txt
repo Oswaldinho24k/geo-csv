@@ -1,0 +1,13 @@
+boto3==1.4.4
+Django==1.11.2
+flake8==3.3.0
+numpydoc==0.7.0
+pep8-naming==0.4.1
+psycopg2==2.7.1
+Sphinx==1.6.2
+sphinx-rtd-theme==0.2.4
+django-cors-headers==2.1.0
+django-rest-swagger==2.1.2
+djangorestframework==3.6.3
+psutil==5.4.0
+python-memcached==1.58

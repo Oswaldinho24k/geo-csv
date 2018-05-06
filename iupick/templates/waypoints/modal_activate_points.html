@@ -1,0 +1,34 @@
+<div class="modal fade" tabindex="-1" role="dialog" id="modal_activate_points">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Activar/Desactivar puntos</h4>
+      </div>
+      <form id="form-activate-points" method="POST" action="{% url 'waypoints:change_status' %}">
+        <div class="modal-body">
+          {% csrf_token %}
+          <fieldset>
+            <legend>Estado por entidad:</legend>
+            <div>
+              <input type="checkbox" id="fedex" name="entities" value="fedex" checked>
+              <label for="fedex">Fedex</label>
+            </div>
+            <div>
+              <input type="checkbox" id="estafeta" name="entities" value="estafeta" checked>
+              <label for="estafeta">Estafeta</label>
+            </div>
+            <div>
+              <input type="checkbox" id="fedex" name="entities" value="fedex" checked>
+              <label for="dhl">DHL</label>
+            </div>
+          </fieldset>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-primary" id="btn_send_create_user">Aplicar Cambios</button>
+        </div>
+      </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

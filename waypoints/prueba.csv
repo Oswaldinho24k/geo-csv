@@ -1,0 +1,3 @@
+name,entity,address_one,address_two,city,state,postal_code,time_open,time_close,lunch_time_start,lunch_time_end,saturday_time_start,saturday_time_end,holiday_time_start,holiday_time_end,contact_email,contact_phone,contact_name,contact_last_name,latitude,longitude,carriers
+Fedex01,Fedex,Privada Camino Real,114 Int. 20 Colonia Fresnos,Queretaro,Queretaro,76159,7:00,22:00,12:00,16:00,09:00,18:00, , ,contact@email.com,4422557878,Simon,Ekman,20.689752,-100.644852,Fedex
+Oxxo Numero 2,Oxxo,Naranjo,Esq. Tlaxcala 108 col. San Benito,Queretaro,Queretaro,76180,08:00,20:00,11:00,16:00,09:00,18:00,10:00,16:00,contacto@correo.com,4427857788,Pedro,Goleman,20.589752,-100.654852,Estafeta

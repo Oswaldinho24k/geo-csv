@@ -1,0 +1,60 @@
+<table id="tablaClientesActivos" class="table table-bordered table-hover table-striped">
+  <thead>
+  <tr>
+    <th>Usuario</th>
+    <th>Nombres</th>
+    <th>Apellidos</th>
+    <th>Tokens</th>
+    <th>Email</th>
+    <th>Acciones</th>
+  </tr>
+  </thead>
+  <tbody>
+  {% for client in clients %}
+  <tr>
+    <td>{{ client.user.username }}</td>
+    <td>{{ client.user.first_name }}</td>
+    <td>{{ client.user.last_name }}</td>
+    <td>
+      {{ client.user.auth_token }}</br>
+      {{ client.user.secret_token }}
+    </td>
+    <td>{{ client.user.email }}</td>
+    <td>
+      <a id="info_client_{{ client.id }}" class="info_client mouseClick btn btn-info" data-form="{% url 'user_profiles:client_profile' client.id %}">
+        <i class="glyphicon glyphicon-user"></i> 
+        Info
+      </a>
+      <div class="input-group input-group-md">
+        <div class="input-group-btn">
+          <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Mas
+            <span class="fa fa-caret-down"></span></button>
+          <ul class="dropdown-menu">
+            <li><a id="update_client_{{ client.id }}" class="update_client mouseClick" data-form="{% url 'user_profiles:form_update_client' client.id %}">
+              <i class="glyphicon glyphicon-pencil"></i> 
+              Editar
+            </a></li>
+            <li class="divider"></li>
+            <li><a id="delete_client_{{ client.id }}" class="delete_client mouseClick" data-form="{% url 'user_profiles:form_delete_client' client.id %}">
+              <i class="glyphicon glyphicon-trash"></i> 
+              Borrar
+            </a></li>
+          </ul>
+        </div>
+      </div>
+      
+    </td>
+  </tr>
+  {% endfor %}
+  </tbody>
+  <tfoot>
+  <tr>
+    <th>Usuario</th>
+    <th>Nombres</th>
+    <th>Apellidos</th>
+    <th>Tokens</th>
+    <th>Email</th>
+    <th>Acciones</th>
+  </tr>
+  </tfoot>
+</table>

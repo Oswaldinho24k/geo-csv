@@ -1,0 +1,76 @@
+{% extends "layouts/admin_template.html" %}
+{% load staticfiles %}
+{% block extra_css %} 
+{# Datatables #}
+  <link rel="stylesheet" type="text/css" href={% static "css/base/home.css" %}>
+{% endblock %}
+{% block header %}
+{% endblock %}
+
+{% block body_content %}
+<div class="row">
+  <div class="col-lg-3 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-aqua">
+      <div class="inner">
+        <h3>{{shipment_count}}</h3>
+
+        <p>Envios</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-bag"></i>
+      </div>
+    </div>
+  </div>
+  <!-- ./col -->
+  <div class="col-lg-3 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-green">
+      <div class="inner">
+        <h3>{{cpu_percent}}<sup style="font-size: 20px">%</sup></h3>
+
+        <p>CPU</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-stats-bars"></i>
+      </div>
+    </div>
+  </div>
+  <!-- ./col -->
+  <div class="col-lg-3 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-yellow">
+      <div class="inner">
+        <h3>{{ram_percent}}<sup style="font-size: 20px">%</sup></h3>
+
+        <p>RAM</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-pie-graph"></i>
+      </div>
+    </div>
+  </div>
+  <!-- ./col -->
+<!--   <div class="col-lg-3 col-xs-6">
+    <div class="small-box bg-red">
+      <div class="inner">
+        <h3>65</h3>
+
+        <p>Unique Visitors</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-pie-graph"></i>
+      </div>
+    </div>
+  </div>
+ -->  <!-- ./col -->
+</div>
+
+{% endblock %}
+
+{% block footer_content %}
+{% endblock %}
+
+{% block extra_js %}
+ 
+{% endblock %}

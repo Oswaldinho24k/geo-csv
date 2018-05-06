@@ -1,0 +1,57 @@
+<table id="tablaPuntosActivos" class="table table-bordered table-hover table-striped">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Entidad</th>
+    <th>Nombre</th>
+    <th>Direccion</th>
+    <th>Coordenadas</th>
+    <th>Acciones</th>
+  </tr>
+  </thead>
+  <tbody>
+  {% for waypoint in waypoints %}
+    <tr {% if not waypoint.active %} style="background: #fdd" {% endif %}>
+      <td>{{ waypoint.id }}</td>
+      <td>{{ waypoint.entity }}</td>
+      <td>{{ waypoint.name }}</td>
+      <td>{{ waypoint.address }}</td>
+      <td>{{ waypoint.latitude }}, {{ waypoint.longitude }}</td>
+      <td>
+        <a id="info_waypoint_{{ waypoint.id }}" class="info_waypoint mouseClick btn btn-info" data-form="{% url 'waypoints:waypoint_profile' waypoint.id %}">
+          <i class="glyphicon glyphicon-user"></i> 
+          Info
+        </a>
+
+        <div class="input-group input-group-md">
+          <div class="input-group-btn">
+            <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Mas
+              <span class="fa fa-caret-down"></span></button>
+            <ul class="dropdown-menu">
+              <li><a id="update_waypoint_{{ waypoint.id }}" class="update_waypoint mouseClick" data-form="{% url 'waypoints:form_update_waypoint' waypoint.id %}">
+                <i class="glyphicon glyphicon-pencil"></i> 
+                Editar
+              </a></li>
+              <li class="divider"></li>
+              <li><a id="delete_waypoint_{{ waypoint.id }}" class="delete_waypoint mouseClick" data-form="{% url 'waypoints:form_delete_waypoint' waypoint.id %}">
+                <i class="glyphicon glyphicon-trash"></i> 
+                Borrar
+              </a></li>
+            </ul>
+          </div>
+        </div>
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+  <tfoot>
+  <tr>
+    <th>Id</th>
+    <th>Entidad</th>
+    <th>Nombre</th>
+    <th>Direccion</th>
+    <th>Coordenadas</th>
+    <th>Acciones</th>
+  </tr>
+  </tfoot>
+</table>

@@ -1,0 +1,15 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <h4 class="modal-title">Borrar Entidad</h4>
+</div>
+<form id="form-new-client" method="POST" action="{% url 'waypoints:delete_entity' %}">
+  {% csrf_token %}
+  {{ delete_form }}
+  <div class="modal-body">
+    <p>¿Está seguro que desea borrar al entidad con usuario {{ entity }}?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+    <button type="submit" class="btn btn-danger" id="btn_send_create_user">Eliminar Entidad</button>
+  </div>
+</form>

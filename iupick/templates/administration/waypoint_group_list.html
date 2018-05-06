@@ -1,0 +1,130 @@
+{% extends "layouts/admin_template.html" %}
+{% load staticfiles %}
+{% block extra_css %} 
+  <link rel="stylesheet" type="text/css" href={% static "css/admin_template/dataTables.bootstrap.min.css" %}>
+  <link rel="stylesheet" type="text/css" href={% static "css/base/home.css" %}>
+{% endblock %}
+{% block header %}
+{% endblock %}
+
+{% block body_content %}
+<!-- Default box -->
+<div class="box">
+  <div class="box-header with-border">
+    <h3 class="box-title">{{page_title}} Activos</h3>
+
+    <div class="box-tools pull-right">
+      <!--       
+        Collapse button
+        <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+        <i class="fa fa-minus"></i></button> 
+      -->
+      <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="Crear Grupo" >
+        <a id="btn_modal_new_group"data-toggle="modal" data-target="#modal_new_group"><i class="fa fa-plus"></i>
+      Agregar Grupo
+    </a></button>
+    </div>
+  </div>
+  <div class="box-body">
+    {% include "waypoint_groups/table_groups.html" %}
+  </div>
+</div>
+<!-- /.box -->
+
+  {% include "waypoint_groups/modal_new_group.html" %}
+
+  <div class="modal fade" tabindex="-1" role="dialog" id="modal_update_group">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content" id="modal_update_group_content">
+
+        {% if active_modal == 'modal_update_group' %}
+          {% include "waypoint_groups/form_update_group.html" %}
+        {% endif %}
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" tabindex="-1" role="dialog" id="modal_delete_group">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content" id="modal_delete_group_content">
+
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" tabindex="-1" role="dialog" id="modal_info_group">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content" id="modal_info_group_content">
+
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+{% endblock %}
+
+{% block footer_content %}
+{% endblock %}
+
+{% block extra_js %}
+  <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+  <script src={% static "js/admin_template/dataTables.bootstrap.min.js" %}></script>
+
+  <script>
+    $(function () {
+      $('#tablaGruposActivos').DataTable({
+        'paging'      : true,
+        'lengthChange': true,
+        'searching'   : true,
+        'ordering'    : true,
+        'info'        : true,
+        'autoWidth'   : true
+      })
+    })
+  </script>
+  {% if active_modal %}
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('#{{ active_modal }}').modal('show');
+      });
+    </script>
+  {% endif %}
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+     $('.delete_group').click(function(ev) { // for each edit contact url
+       ev.preventDefault(); // prevent navigation
+       var url = $(this).data('form'); // get the contact form url
+       $('#modal_delete_group_content').load(url, function() { // load the url into the modal
+         $('#modal_delete_group').modal('show'); // display the modal on url load
+       });
+       return false; // prevent the click propagation
+     });
+   });
+  </script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+     $('.update_group').click(function(ev) { // for each edit contact url
+       ev.preventDefault(); // prevent navigation
+       var url = $(this).data('form'); // get the contact form url
+       $('#modal_update_group_content').load(url, function() { // load the url into the modal
+         $('#modal_update_group').modal('show'); // display the modal on url load
+       });
+       return false; // prevent the click propagation
+     });
+   });
+  </script>
+
+   <script type="text/javascript">
+    $(document).ready(function() {
+     $('.info_group').click(function(ev) { // for each edit contact url
+       ev.preventDefault(); // prevent navigation
+       var url = $(this).data('form'); // get the contact form url
+       $('#modal_info_group_content').load(url, function() { // load the url into the modal
+         $('#modal_info_group').modal('show'); // display the modal on url load
+       });
+       return false; // prevent the click propagation
+     });
+   });
+  </script>
+{% endblock %}

@@ -1,0 +1,15 @@
+body {
+	font-family: Helvetica, sans-serif;
+}
+
+h1 {
+	font-size: 5vw;
+}
+
+h2 {
+	font-size: 3.5vw;
+}
+
+.nebula {
+	background-image: url(../../images/backgrounds/nebula.jpg);
+}

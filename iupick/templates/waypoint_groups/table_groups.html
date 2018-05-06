@@ -1,0 +1,48 @@
+<table id="tablaGruposActivos" class="table table-bordered table-hover table-striped">
+  <thead>
+    <tr>
+      <th>Nombre de Grupo</th>
+      <th>Numero de Puntos</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for group in groups %}
+      <tr>
+        <td>{{ group.name }}</td>
+        <td>{{ group.waypoints_length }}</td>
+        <td>
+          <a id="info_group_{{ group.id }}" class="info_group mouseClick btn btn-info" data-form="{% url 'waypoints:waypoint_group_profile' group.id %}">
+            <i class="glyphicon glyphicon-user"></i> 
+            Info
+          </a>
+
+          <div class="input-group input-group-md">
+            <div class="input-group-btn">
+              <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Mas
+                <span class="fa fa-caret-down"></span></button>
+              <ul class="dropdown-menu">
+                <li><a id="update_group_{{ group.id }}" class="update_group mouseClick" data-form="{% url 'waypoints:form_update_waypoint_group' group.id %}">
+                  <i class="glyphicon glyphicon-pencil"></i> 
+                  Editar
+                </a></li>
+                <li class="divider"></li>
+                <li><a id="delete_group_{{ group.id }}" class="delete_group mouseClick" data-form="{% url 'waypoints:form_delete_waypoint_group' group.id %}">
+                  <i class="glyphicon glyphicon-trash"></i> 
+                  Borrar
+                </a></li>
+              </ul>
+            </div>
+          </div>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+  <tfoot>
+    <tr>
+      <th>Nombre de Grupo</th>
+      <th>Numero de Puntos</th>
+      <th>Acciones</th>
+    </tr>
+  </tfoot>
+</table>

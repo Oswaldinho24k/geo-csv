@@ -1,0 +1,9 @@
+<div class="pull-left">
+<form action="{% url 'waypoints:parse_csv'%}" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <input style="float:left;" type="file" name="csv_file" />
+  <!-- <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="Crear Punto" > -->
+        <!-- <a id="btn_modal_new_client" data-target="#modal_new_client" data-toggle="modal"><i class="fa fa-plus"></i> Agregar Punto</a></button> -->
+  <input style="float:left;color: #3c8dbc;" class="btn btn-box-tool" type="submit" value="Cargar CSV" />
+</form>
+</div>

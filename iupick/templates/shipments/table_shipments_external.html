@@ -1,0 +1,59 @@
+<table id="tablaShipmentsExternal" class="table table-bordered table-hover table-striped">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Cliente</th>
+    <th>Waypoint</th>
+    <th>Orden del Cliente</th>
+    <th>Fecha</th>
+  </tr>
+  </thead>
+  <tbody>
+  {% for shipment in shipments %}
+  <tr>
+    <td>{{ shipment.id }}</td>
+    <td>{{ shipment.client }}</td>
+    <td>{{ shipment.waypoint }}</td>
+    <td>{{ shipment.order_id }}</td>
+    <td>{{ shipment.created_at }}</td>
+<!--     <td>
+      <a id="info_client_{{ shipment.id }}" class="info_client mouseClick btn btn-info" data-form="{% url 'user_profiles:client_profile' shipment.id %}">
+        <i class="glyphicon glyphicon-user"></i> 
+        Info
+      </a>
+      <a id="delete_client_{{ shipment.id }}" class="delete_client mouseClick" data-form="{% url 'user_profiles:form_delete_client' shipment.id %}">
+        <i class="glyphicon glyphicon-trash"></i> 
+        Borrar
+      </a> -->
+      <!-- <div class="input-group input-group-md">
+        <div class="input-group-btn">
+          <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Mas
+            <span class="fa fa-caret-down"></span></button>
+          <ul class="dropdown-menu">
+            <li><a id="update_client_{{ shipment.id }}" class="update_client mouseClick" data-form="{% url 'user_profiles:form_update_client' shipment.id %}">
+              <i class="glyphicon glyphicon-pencil"></i> 
+              Editar
+            </a></li>
+            <li class="divider"></li>
+            <li><a id="delete_client_{{ shipment.id }}" class="delete_client mouseClick" data-form="{% url 'user_profiles:form_delete_client' shipment.id %}">
+              <i class="glyphicon glyphicon-trash"></i> 
+              Borrar
+            </a></li>
+          </ul>
+        </div>
+      </div>
+       -->
+    <!-- </td> -->
+  </tr>
+  {% endfor %}
+  </tbody>
+  <tfoot>
+  <tr>
+    <th>ID</th>
+    <th>Cliente</th>
+    <th>Waypoint</th>
+    <th>Orden del Cliente</th>
+    <th>Fecha</th>
+  </tr>
+  </tfoot>
+</table>

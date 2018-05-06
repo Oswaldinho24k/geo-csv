@@ -1,0 +1,34 @@
+<table id="tablaEntidadesActivos" class="table table-bordered table-hover table-striped">
+  <thead>
+  <tr>
+    <th>Nombre</th>
+    <th>Numero de Puntos</th>
+    <th>Acciones</th>
+  </tr>
+  </thead>
+  <tbody>
+  {% for entity in entities %}
+  <tr>
+    <td>{{ entity.name }}</td>
+    <td>{{ entity.waypoint_count }}</td>
+    <td>
+      <a id="update_entity_{{ entity.id }}" class="update_entity mouseClick btn btn-info" data-form="{% url 'waypoints:form_update_entity' entity.id %}">
+        <i class="glyphicon glyphicon-pencil"></i> 
+        Editar
+      </a>
+<!--       <a id="delete_entity_{{ entity.id }}" class="delete_entity mouseClick btn btn-danger" data-form="{% url 'waypoints:form_delete_entity' entity.id %}">
+        <i class="glyphicon glyphicon-trash"></i> 
+        Borrar
+      </a> -->
+    </td>
+  </tr>
+  {% endfor %}
+  </tbody>
+  <tfoot>
+  <tr>
+    <th>Nombre</th>
+    <th>Numero de Puntos</th>
+    <th>Acciones</th>
+  </tr>
+  </tfoot>
+</table>

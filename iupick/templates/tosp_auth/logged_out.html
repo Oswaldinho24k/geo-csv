@@ -1,0 +1,22 @@
+{% extends "layouts/admin_basic.html" %}
+{% load staticfiles %}
+{% block page_title %}Logged out{% endblock %}
+{% block extra_css %} 
+  <link rel="stylesheet" type="text/css" href={% static "css/base/home.css" %}>
+{% endblock %}
+{% block header %}
+{% endblock %}
+
+{% block body_content %}
+<div class='row text-center'>
+  <p>Tu sesión se ha cerrado con éxito!</p>
+  <p>Haz Login de nuevo.</p>
+</div>
+
+<div class='row text-center'>
+  <a class="btn btn-primary" href="{% url 'tosp_auth:login' %}">Login</a>
+</div>
+{% endblock %}
+
+{% block footer_content %}
+{% endblock %}

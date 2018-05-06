@@ -1,0 +1,264 @@
+{% extends "layouts/admin_template.html" %}
+{% load staticfiles %}
+{% block extra_css %} 
+  <link rel="stylesheet" type="text/css" href={% static "css/admin_template/dataTables.bootstrap.min.css" %}>
+  <link rel="stylesheet" type="text/css" href={% static "css/base/home.css" %}>
+{% endblock %}
+{% block header %}
+<style>
+  /* Always set the map height explicitly to define the size of the div
+   * element that contains the map. */
+  #map {
+    height: 100%;
+  }
+
+  #mapRow {
+    height: 500px;
+  }
+</style>
+{% endblock %}
+
+
+{% block body_content %}
+<!-- Default box -->
+<div class='row' id="mapRow">
+      <div id="map"></div>
+    </div>
+<div class="box">
+  <div class="box-header with-border">
+    <h3 class="box-title">{{page_title}} de Entrega Activos</h3>
+
+    <div class="box-tools pull-right">
+      <!--       
+        Collapse button
+        <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+        <i class="fa fa-minus"></i></button> 
+      -->
+      {% include "waypoints/form_upload_csv.html" %}
+      <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="Crear Punto" >
+        <a id="btn_modal_new_client" data-target="#modal_new_client" data-toggle="modal"><i class="fa fa-plus"></i> Agregar Punto</a></button>
+    </div>
+  </div>
+  <div class="box-body">
+    {% include "waypoints/table_waypoints.html" %}
+  </div>
+</div>
+<!-- /.box -->
+
+
+
+
+  {% include "waypoints/modal_new_waypoint.html" %}
+  {% include "waypoints/modal_activate_points.html" %}
+
+  <div class="modal fade" tabindex="-1" role="dialog" id="modal_update_waypoint">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content" id="modal_update_waypoint_content">
+
+        {% if active_modal == 'modal_update_waypoint' %}
+          {% include "waypoints/form_update_waypoint.html" %}
+        {% endif %}
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" tabindex="-1" role="dialog" id="modal_delete_waypoint">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content" id="modal_delete_waypoint_content">
+
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" tabindex="-1" role="dialog" id="modal_info_waypoint">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content" id="modal_info_waypoint_content">
+
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+{% endblock %}
+
+{% block footer_content %}
+{% endblock %}
+
+{% block extra_js %}
+<!-- Este lo tenemos que hostear nosotros: https://developers.google.com/maps/documentation/javascript/marker-clustering junto con imagenes -->
+  <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+  <script src={% static "js/admin_template/dataTables.bootstrap.min.js" %}></script>
+  <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js" />
+  <script type="text/javascript">
+</script>
+  <script type="text/javascript">
+</script>
+  <script type="text/javascript">
+    function delete_waypoint_modal_click_listener() {
+     $('.delete_waypoint').click(function(ev) { // for each edit contact url
+       ev.preventDefault(); // prevent navigation
+       var url = $(this).data('form'); // get the contact form url
+       $('#modal_delete_waypoint_content').load(url, function() { // load the url into the modal
+         $('#modal_delete_waypoint').modal('show'); // display the modal on url load
+       });
+       return false; // prevent the click propagation
+     });
+   }
+    $(document).ready(delete_waypoint_modal_click_listener);
+  </script>
+
+  {% if active_modal %}
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('#{{ active_modal }}').modal('show');
+      });
+    </script>
+  {% endif %}
+
+
+  <script type="text/javascript">
+    function update_waypoint_modal_click_listener() {
+     $('.update_waypoint').click(function(ev) { // for each edit contact url
+       ev.preventDefault(); // prevent navigation
+       var url = $(this).data('form'); // get the contact form url
+       $('#modal_update_waypoint_content').load(url, function() { // load the url into the modal
+         $('#modal_update_waypoint').modal('show'); // display the modal on url load
+       });
+       return false; // prevent the click propagation
+     });
+   }
+    $(document).ready(update_waypoint_modal_click_listener);
+  </script>
+
+   <script type="text/javascript">
+    function info_waypoint_modal_click_listener() {
+     $('.info_waypoint').click(function(ev) { // for each edit contact url
+       ev.preventDefault(); // prevent navigation
+       var url = $(this).data('form'); // get the contact form url
+       $('#modal_info_waypoint_content').load(url, function() { // load the url into the modal
+         $('#modal_info_waypoint').modal('show'); // display the modal on url load
+       });
+       return false; // prevent the click propagation
+     });
+   }
+    $(document).ready(info_waypoint_modal_click_listener);
+  </script>
+
+
+  <script>
+    $(function () {
+      let datatable_waypoints = $('#tablaPuntosActivos').DataTable({
+        'paging'      : true,
+        'lengthChange': true,
+        'searching'   : true,
+        'ordering'    : true,
+        'info'        : true,
+        'autoWidth'   : true
+      })
+      datatable_waypoints.bind( 'draw', delete_waypoint_modal_click_listener );
+      datatable_waypoints.bind( 'draw', update_waypoint_modal_click_listener );
+      datatable_waypoints.bind( 'draw', info_waypoint_modal_click_listener );
+
+    });
+  </script>
+
+
+     <script type="text/javascript">
+    $(document).ready(function() {
+      $('#id_state').change(function(ev) { // for each edit contact url
+        var get_url = "/logistics/postal_codes/" + this.value;
+        $.get( get_url, function( data ) {
+          var postal_codes = JSON.parse(data.postal_codes);
+          var options = $("#id_postal_code");
+          options.find('option').remove();
+          $.each(Array.from(postal_codes), function() {
+            console.log(this)
+            options.append($("<option />").val(this.pk).text(this.fields.code));
+          });          
+        });
+     });
+   });
+  </script>
+
+    
+    <script>
+      var map;
+      var locations = [];
+      var markers = [];
+      function appendLocations(){
+        {% for w in waypoints %}
+          {% if w.active %}
+            locations.push(['{{w}}', '{{w.latitude}}','{{w.longitude}}'])
+          {% endif %}
+        {% endfor %}
+
+        $('#active-number').text(locations.length);
+
+        for (var i = 0; i < locations.length; i++) {
+          var latLng = new google.maps.LatLng(locations[i][1],locations[i][2]);
+          var content = '<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<h3 id="firstHeading" class="firstHeading">'+locations[i][0]+'</h3>'+
+            '<div id="bodyContent">'+
+            '<p><a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
+            'iuPick</a> '+
+            '</p>'+
+            '</div>'+
+            '</div>';
+          var marker = new google.maps.Marker({
+            position: latLng,
+            map: map,
+            title: locations[i][0]
+          });
+          var infowindow = new google.maps.InfoWindow();
+        markers.push(marker)
+        
+        google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
+            return function() {
+                infowindow.setContent(content);
+                infowindow.open(map,marker);
+            };
+        })(marker,content,infowindow));  
+        // markers[i].addListener('click', function() {
+        //     infowindow.open(map, marker);
+        // });
+        }
+var markerCluster = new MarkerClusterer(map, markers,
+            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+
+      }
+
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 5,
+          center: new google.maps.LatLng(22.2,-100.3),
+          mapTypeId: 'terrain'
+        });
+
+        appendLocations()
+        // Create a <script> tag and set the USGS URL as the source.
+        // var script = document.createElement('script');
+        // This example uses a local copy of the GeoJSON stored at
+        // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
+        // script.src = 'https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
+        // document.getElementsByTagName('head')[0].appendChild(script);
+      }
+
+      // Loop through the results array and place a marker for each
+      // set of coordinates.
+      window.eqfeed_callback = function(results) {
+        for (var i = 0; i < results.features.length; i++) {
+          var coords = results.features[i].geometry.coordinates;
+          var latLng = new google.maps.LatLng(coords[1],coords[0]);
+          var marker = new google.maps.Marker({
+            position: latLng,
+            map: map
+          });
+        }
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4JQ2inKX4ormb0kWFJkbzVBEAkCCRGqg&callback=initMap">
+    </script>
+
+{% endblock %}
